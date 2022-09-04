@@ -21,8 +21,6 @@ def get_data_from_excel():
 ## Calling the function to get the dataset into dataframe
 df = get_data_from_excel()
 
-# st.dataframe(df)
-
 # SIDEBAR
 st.sidebar.header("Filter Here:")
 
@@ -104,7 +102,7 @@ fig_product_sales.update_layout(
 )
 
 ## Show the figure
-st.plotly_chart(fig_product_sales)
+# st.plotly_chart(fig_product_sales)
 
 
 # SALES BY HOUR (BAR CHART)
@@ -130,8 +128,28 @@ fig_hourly_sales.update_layout(
 )
 
 ## Show the figure
-st.plotly_chart(fig_hourly_sales)
+# st.plotly_chart(fig_hourly_sales)
 
+# PLOTING SALES BY PRODUCT LINE AND HOUR INTO COLUMN
+first_column, second_column = st.columns(2)
+
+first_column.plotly_chart(fig_product_sales, use_container_width=True)
+second_column.plotly_chart(fig_hourly_sales, use_container_width=True)
+
+
+# Show the dataframe
+st.dataframe(df_selection)
+
+# HIDE THE STREAMLIT STYLING
+hide_st_style = """
+    <style>
+        #MainMenu {visibility:hidden;}
+        footer {visibility:hidden;}
+        header {visibility:hidden;}
+    </style>
+"""
+
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
 
 
